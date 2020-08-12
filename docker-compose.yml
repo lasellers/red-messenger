@@ -1,0 +1,158 @@
+# See https://hub.docker.com/_/mariadb
+
+# See README.md
+
+# sudo docker network inspect redmessenger_default
+
+#  sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+#  sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
+#  sudo ln -s /etc/apparmor.d/usr.sbin.snap.mysql-workbench-community.mysql-workbench-community /etc/apparmor.d/disable/
+#  sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.snap.mysql-workbench-community.mysql-workbench-community
+
+# sudo systemctl disable apparmor
+# sudo aa-status
+
+# sudo snap connect mysql-workbench-community:password-manager-service :password-manager-service
+# snap connect mysql-workbench-community:ssh-keys
+
+# sudo docker-compose -f Dockerfile up
+# sudo docker exec -it redmessenger /bin/bash
+# mysql -uroot -ppassword
+# show databases;
+# use redmessenger;
+# show tables;
+
+version: '3.1'
+services:
+  webserver:
+    image: nginx:latest
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .frontend/:/home/node/app/
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      default:
+      #ipv4_address: 172.28.0.5
+
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    # container_name: _app
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    ports:
+      - "81:3001"
+    working_dir: /home/node/app/
+    volumes:
+      - ./:/home/node/app/
+    networks:
+      default:
+        #ipv4_address: 172.28.0.4
+
+  db:
+    image: mariadb
+    #build:
+    #  context: ./redmessenger/
+    #  dockerfile: ../Dockerfile
+    restart: always
+    #hostname: redmessenger.localhost.com
+    # hostname: localhost
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    # container_name: redmessenger_db
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MARIADB_USER=${DB_USERNAME}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      #  - redmessengerdb:/var/lib/mysql
+      - ./database/initdb:/docker-entrypoint-initdb.d
+      # - ./db:/var/lib/mysql
+    networks:
+      default:
+         #ipv4_address: 172.28.0.2
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+    # command: redis-server --requirepass ${REDIS_PASSWORD}
+    ports:
+      - "6379:6379" # {$REDIS_PORT}
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      default:
+       #ipv4_address: 172.28.0.3
+      # ipv4_address: {$REDIS_HOST}
+
+  memcached:
+    image: library/memcached:latest
+    ports:
+      - '11211:11211'
+
+  nosql:
+    image: mongo
+    # container_name: 'mongo-db'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=redmessenger
+      - MONGO_INITDB_PASSWORD=password
+    volumes:
+      #- ./init-mongo.js:/ocker-entrypoint-initdb.d/init-mongo.js:ro
+      #- ./mongo-volume:/data/db
+      - mongodb_data_container:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+
+  load:
+    image: loadimpact/k6
+
+volumes:
+#  redmessenger:
+  mongodb_data_container:
+
+networks:
+  default:
+    #ipam:
+      #driver: default
+      #config:
+        # - subnet: 172.28.0.0/16
+
+# mongo
+
+# sudo docker exec -it redmessenger-mongo-db bash
+# mongo admin -u root -p password
+
+# show dbs
+# use mydb
+# db.mycol.save({"name":"test 1"})
+# db.mycol.save({"name":"test 1"})
+# db.mycol.save({"name":"test 1"})
+# db.mycol.save({"name":"test 2"})
+# show collections
+# db.mycol.find()
+# db.mycol.find({"name":"test 2"})

@@ -1,0 +1,21 @@
+{
+    "development": {
+        "host": "127.0.0.1",
+        "dialect": "sqlite",
+        "storage": "/tmp/redmessenger.sqlite"
+    },
+    "test": {
+        "username": "redmessenger",
+        "password": "password",
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "sqlite"
+    },
+    "production": {
+        "username": "redmessenger",
+        "password": "password",
+        "database": "database_production",
+        "host": "127.0.0.1",
+        "dialect": "mariadb"
+    }
+}
