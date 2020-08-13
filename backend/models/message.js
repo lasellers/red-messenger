@@ -7,7 +7,9 @@ module.exports = db.define('message', {
     userId: DataTypes.NUMBER,
     title: DataTypes.STRING,
     message: DataTypes.STRING,
-    repliedTo: DataTypes.NUMBER
+    repliedTo: DataTypes.NUMBER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
 }, {
     tableName: 'Messages'
 });

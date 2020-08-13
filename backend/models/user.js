@@ -6,8 +6,8 @@ const {DataTypes} = require('sequelize');
 module.exports = db.define('user', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    createdAt: DataTypes.STRING,
-    updatedAt: DataTypes.STRING
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
 }, {
     tableName: 'Users'
 });

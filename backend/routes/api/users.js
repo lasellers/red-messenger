@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-const User = require('../models/user.js');
+const User = require('../../models/user.js');
 console.log(User);
 //User.init();
 
@@ -16,8 +16,6 @@ router.get('/', async function (req, res) {
             res.json(allRows);
         });
     });*/
-
-    // res.send("test");
 
     User.findAll().then((users) => {
         console.log(users.every(users => users instanceof User)); // true

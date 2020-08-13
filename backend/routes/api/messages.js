@@ -1,10 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-//const db = require('../config/database.js');
-//const {DataTypes} = require('sequelize');
-
-const Message = require('../models/message.js');
+const Message = require('../../models/message.js');
 console.log(Message);
 //Message.init();
 

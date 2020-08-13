@@ -7,7 +7,7 @@ See backend/README.md and frontend/README.md
 
 ## Backend
 
-NodeJS 12+
+NodeJS 12+, sequalize, knex
 
 
 ## Frontend

@@ -11,9 +11,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_URL}}/",
+					"raw": "{{WEB_URL}}/",
 					"host": [
-						"{{API_URL}}"
+						"{{WEB_URL}}"
 					],
 					"path": [
 						""
@@ -23,7 +23,7 @@
 			"response": []
 		},
 		{
-			"name": "/users",
+			"name": "/api/users",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -40,9 +40,75 @@
 			"response": []
 		},
 		{
-			"name": "/user/1",
+			"name": "/api/user/1",
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/user/1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/user/?name=newuser",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "newuser"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/1",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/user/1?name=xxx",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"user",
+						"1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "xxx"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/1",
+			"request": {
+				"method": "DELETE",
 				"header": [],
 				"url": {
 					"raw": "{{API_URL}}/user/1",
@@ -63,9 +129,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_URL}}/about",
+					"raw": "{{WEB_URL}}/about",
 					"host": [
-						"{{API_URL}}"
+						"{{WEB_URL}}"
 					],
 					"path": [
 						"about"
@@ -75,7 +141,7 @@
 			"response": []
 		},
 		{
-			"name": "/message/{id}",
+			"name": "/api/message/{id}",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -93,7 +159,7 @@
 			"response": []
 		},
 		{
-			"name": "/message/{id}",
+			"name": "/api/message/{id}",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -111,7 +177,63 @@
 			"response": []
 		},
 		{
-			"name": "/messages",
+			"name": "/api/message/1",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/message/1?title=updated title&message=updated message",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"message",
+						"1"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "updated title"
+						},
+						{
+							"key": "message",
+							"value": "updated message"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/message/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/message/?title=new title&message=new message",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"message",
+						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "new title"
+						},
+						{
+							"key": "message",
+							"value": "new message"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/messages",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -152,8 +274,13 @@
 	],
 	"variable": [
 		{
-			"id": "f8eb5075-2a84-4385-a580-dd7190b636ac",
+			"id": "ff4a83cd-0a10-4c3f-9460-f0b2966a3881",
 			"key": "API_URL",
+			"value": "localhost:3001/api"
+		},
+		{
+			"id": "60bead2c-282d-4157-b19b-7c112f3b3e7e",
+			"key": "WEB_URL",
 			"value": "localhost:3001"
 		}
 	],
