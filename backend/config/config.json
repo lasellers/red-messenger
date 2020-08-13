@@ -2,20 +2,25 @@
     "development": {
         "host": "127.0.0.1",
         "dialect": "sqlite",
-        "storage": "/tmp/redmessenger.sqlite"
+        "storage": "/tmp/redmessenger.db"
+    },
+    "development2": {
+        "host": {"ENV": "DB_HOST"},
+        "dialect": "sqlite",
+        "storage": {"ENV": "DB_STORAGE"}
     },
     "test": {
-        "username": "redmessenger",
-        "password": "password",
-        "database": "database_test",
-        "host": "127.0.0.1",
-        "dialect": "sqlite"
+        "username": {"ENV": "DB_USERNAME"},
+        "password": {"ENV": "DB_PASSWORD"},
+        "database": {"ENV": "DB_DATABASE"},
+        "host":  {"ENV": "DB_HOST"},
+        "dialect": "sqlite::memory"
     },
     "production": {
-        "username": "redmessenger",
-        "password": "password",
-        "database": "database_production",
-        "host": "127.0.0.1",
+        "username": {"ENV": "DB_USERNAME"},
+        "password": {"ENV": "DB_PASSWORD"},
+        "database": {"ENV": "DB_DATABASE"},
+        "host": {"ENV": "DB_HOST"},
         "dialect": "mariadb"
     }
 }
