@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+console.info(process.env);
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -15,6 +16,10 @@ const userRouter = require('./routes/api/user');
 const messageRouter = require('./routes/api/message');
 
 const app = express();
+
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/config/config.json')[env];
 
 const db = require('./config/database.js');
 const {DataTypes} = require('sequelize');

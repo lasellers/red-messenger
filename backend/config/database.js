@@ -1,9 +1,16 @@
 const {Sequelize} = require('sequelize');
 const {DataTypes} = require('sequelize');
+
+console.info('DB_DATABASE',process.env.DB_DATABASE);
+console.info('DB_USERNAME',process.env.DB_USERNAME);
+console.info('DB_PASSWORD',process.env.DB_PASSWORD);
+console.info('DB_HOST',process.env.DB_HOST);
+console.info('DB_STORAGE',process.env.DB_STORAGE);
+
 const db = new Sequelize({
     dialect: 'sqlite',
-    storage: '/tmp/redmessenger.sqlite',
-    host: 'localhost',
+    storage: process.env.DB_STORAGE,
+    host: process.env.DB_HOST,
     pool: {
         max: 10,
         min: 0,
