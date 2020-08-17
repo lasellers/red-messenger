@@ -28,16 +28,16 @@ services:
   # nginx -t
   frontend:
     container_name: red_messenger_frontend
-    image: nginx:latest
+    image: nginx:stable
     restart: unless-stopped
     tty: true
-    depends_on:
-      - api
+    #depends_on:
+    #  - api
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./frontend/:/home/app/
+      - ./frontend/:/var/www/html/
       - ./frontend.nginx.conf:/etc/nginx/nginx.conf
     networks:
       default:
@@ -45,7 +45,7 @@ services:
 
   api:
     container_name: red_messenger_api
-    image: nginx:latest
+    image: nginx:stable
     restart: unless-stopped
     tty: true
     depends_on:
@@ -54,7 +54,7 @@ services:
       - "8080:80"
       - "4480:443"
     volumes:
-      - ./backend/:/home/node/app/
+      - ./backend/:/var/www/html/
       - ./backend.nginx.conf:/etc/nginx/nginx.conf
     networks:
       default:
@@ -78,13 +78,18 @@ services:
       SERVICE_TAGS: dev
     ports:
       - "3001:3001"
-    working_dir: /home/node/app/
+    working_dir: /var/www/html
     volumes:
-      - ./backend/:/home/node/app/
+      - ./backend/:/var/www/html/
     networks:
       default:
         #ipv4_address: 172.28.0.4
 
+  # sudo docker exec -it red_manager_db bash
+  # mysql -uroot -ppassword
+  # show databases;
+  # use redmessenger;
+  # show tables;
   db:
     container_name: red_messenger_db
     image: mariadb

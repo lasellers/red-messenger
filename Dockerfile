@@ -8,6 +8,7 @@ WORKDIR /home/node/app
 COPY --chown=node:node backend/. ./
 USER node
 RUN npm install
+RUN npx sequelize db:migrate && npx sequelize db:seed:all
 EXPOSE 3001
 
 CMD [ "node", "app.js" ]
