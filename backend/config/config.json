@@ -10,11 +10,8 @@
         "storage": {"ENV": "DB_STORAGE"}
     },
     "test": {
-        "username": {"ENV": "DB_USERNAME"},
-        "password": {"ENV": "DB_PASSWORD"},
-        "database": {"ENV": "DB_DATABASE"},
-        "host":  {"ENV": "DB_HOST"},
-        "dialect": "sqlite::memory"
+        "dialect": "sqlite",
+        "storage": "memory"
     },
     "production": {
         "username": {"ENV": "DB_USERNAME"},

@@ -1,3 +1,4 @@
+console.error('dotenv');
 require('dotenv').config();
 
 console.info(process.env);

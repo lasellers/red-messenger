@@ -9,6 +9,9 @@
         "seed": "npx sequelize db:migrate && npx sequelize db:seed:all",
         "unseed": "npx sequelize db:seed:undo:all && npx sequelize db:migrate:undo",
         "test": "jest",
+        "test-ci": "NODE_ENV=test npx sequelize db:migrate && NODE_ENV=test npx sequelize db:seed:all && NODE_ENV=test jest",
+        "test-prod": "NODE_ENV=production npx sequelize db:migrate && NODE_ENV=production npx sequelize db:seed:all && NODE_ENV=production jest",
+        "test-dev": "NODE_ENV=development npx sequelize db:migrate && NODE_ENV=development npx sequelize db:seed:all && NODE_ENV=development jest",
         "test-coverage": "jest --coverage",
         "coveralls": "jest --coverage && ./node_modules/.bin/coveralls < coverage/lcov.info"
     },
