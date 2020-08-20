@@ -43,22 +43,22 @@ services:
       default:
       #ipv4_address: 172.28.0.5
 
-  api:
-    container_name: red_messenger_api
-    image: nginx:stable
-    restart: unless-stopped
-    tty: true
-    depends_on:
-      - app
-    ports:
-      - "8080:80"
-      - "4480:443"
-    volumes:
-      - ./backend/:/var/www/html/
-      - ./backend.nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      default:
-      #ipv4_address: 172.28.0.5
+#  api:
+#    container_name: red_messenger_api
+#    image: nginx:stable
+#    restart: unless-stopped
+#    tty: true
+#    depends_on:
+#      - app
+#    ports:
+#      - "8080:80"
+#      - "4480:443"
+#    volumes:
+#      - ./backend/:/home/node/app/
+#      - ./backend.nginx.conf:/etc/nginx/nginx.conf
+#    networks:
+#      default:
+#      #ipv4_address: 172.28.0.5
 
   # sudo docker build . - f Dockerfile -t app:1
   # sudo docker run -i -t --name red_app -p 3001:3001 app:1
@@ -78,9 +78,10 @@ services:
       SERVICE_TAGS: dev
     ports:
       - "3001:3001"
-    working_dir: /var/www/html
+      - "3002:3002"
+    working_dir: /home/node/app/
     volumes:
-      - ./backend/:/var/www/html/
+      - ./backend/:/home/node/app/
     networks:
       default:
         #ipv4_address: 172.28.0.4
@@ -138,35 +139,35 @@ services:
        #ipv4_address: 172.28.0.3
       # ipv4_address: {$REDIS_HOST}
 
-  memcached:
-    container_name: red_messenger_memcached
-    image: library/memcached:latest
-    ports:
-      - '11211:11211'
+#  memcached:
+#    container_name: red_messenger_memcached
+#    image: library/memcached:latest
+#    ports:
+#      - '11211:11211'
+#
+#  nosql:
+#    container_name: red_messenger_mongo
+#    image: mongo
+#    # container_name: 'mongo-db'
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=root
+#      - MONGO_INITDB_ROOT_PASSWORD=password
+#      - MONGO_INITDB_DATABASE=redmessenger
+#      - MONGO_INITDB_PASSWORD=password
+#    volumes:
+#      #- ./init-mongo.js:/ocker-entrypoint-initdb.d/init-mongo.js:ro
+#      #- ./mongo-volume:/data/db
+#      - mongodb_data_container:/data/db
+#    ports:
+#      - '27017-27019:27017-27019'
+#
+#  load:
+#    container_name: red_messenger_k6
+#    image: loadimpact/k6
 
-  nosql:
-    container_name: red_messenger_mongo
-    image: mongo
-    # container_name: 'mongo-db'
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=password
-      - MONGO_INITDB_DATABASE=redmessenger
-      - MONGO_INITDB_PASSWORD=password
-    volumes:
-      #- ./init-mongo.js:/ocker-entrypoint-initdb.d/init-mongo.js:ro
-      #- ./mongo-volume:/data/db
-      - mongodb_data_container:/data/db
-    ports:
-      - '27017-27019:27017-27019'
-
-  load:
-    container_name: red_messenger_k6
-    image: loadimpact/k6
-
-volumes:
+#volumes:
 #  redmessenger:
-  mongodb_data_container:
+#  mongodb_data_container:
 
 networks:
   default:

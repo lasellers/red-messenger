@@ -1,8 +1,10 @@
-# Red Messenger
+# Red Messenger Backend
 
 Simple NodeJs messenger API
 
 
 ## Run development
 
-`DEBUG=red-messenger:* npm start`
+`DEBUG=red-messenger:* PORT=3001 npm start`
+
+`npm run seed`

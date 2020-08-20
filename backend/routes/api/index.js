@@ -1,3 +1,4 @@
+// ex: $ PORT=3002 node app.js
 var router = require('express').Router();
 
 const User = require('../../models/user.js');

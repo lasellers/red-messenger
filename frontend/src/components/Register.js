@@ -1,42 +1,32 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import "./Login.css";
+import "./Register.css";
 
-export default function Login() {
+export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return email.length > 0 && password.length > 0 && name.length > 0;
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-
-        fetch("login")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.items
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
     }
 
     return (
-        <div className="Login">
+        <div className="Register">
             <form onSubmit={handleSubmit}>
+                <Form.Group controlId="name" bsSize="large">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        autoFocus
+                        type="name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                </Form.Group>
                 <Form.Group controlId="email" bsSize="large">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
@@ -55,7 +45,7 @@ export default function Login() {
                     />
                 </Form.Group>
                 <Button block bsSize="large" disabled={!validateForm()} type="submit">
-                    Login
+                    Register
                 </Button>
             </form>
         </div>

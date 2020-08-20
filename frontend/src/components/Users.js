@@ -1,22 +1,53 @@
 import React, {Component} from "react";
+import {API_URL} from "../App";
 
 class Users extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            users: []
+        };
+    }
+
+    componentDidMount() {
+        fetch(API_URL + "/users")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({
+                        isLoaded: true,
+                        users: result.users
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
     render() {
+        const {error, isLoaded, users} = this.state;
         return (
             <div>
-                <h2>Users</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus magna quis tellus vestibulum
-                    blandit. Ut dignissim diam vitae turpis mattis porttitor. Suspendisse condimentum aliquet lectus, at
-                    molestie justo semper eu. Quisque vehicula velit nec dui blandit vestibulum. Mauris dignissim sem
-                    dolor, quis scelerisque arcu suscipit ac. Fusce vitae lorem ante. Phasellus id dui risus. Phasellus
-                    molestie congue sem, eu hendrerit sapien placerat in. Aenean justo ex, sodales vitae egestas eu,
-                    tempus porttitor eros. Integer nec sodales ante. Pellentesque rhoncus ex ac rhoncus tempus. Praesent
-                    tincidunt nulla at leo scelerisque luctus. Fusce aliquam lectus nec imperdiet efficitur. Etiam
-                    sodales, libero id ornare aliquam, magna nunc ornare risus, eget aliquam dui libero a ante.
-                </p>
+                <h1>Users</h1>
+                <ul>
+                    {users.map(user => (
+                        <li key={user.id}>
+                            {user.name} {user.email}
+                        </li>
+                    ))}
+                </ul>
             </div>
-        )
+        );
     }
 }
 

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import "./Login.css";
+import "./Logout.css";
 
 export default function Logout() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return true;
     }
 
     function handleSubmit(event) {
@@ -17,25 +15,8 @@ export default function Logout() {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <Form.Group controlId="email" bsSize="large">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        autoFocus
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group controlId="password" bsSize="large">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        type="password"
-                    />
-                </Form.Group>
                 <Button block bsSize="large" disabled={!validateForm()} type="submit">
-                    Login
+                    Logout
                 </Button>
             </form>
         </div>
