@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc9de957-f604-4401-86d4-3a1a5c0b6ea2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/About.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/HomePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Logout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Logout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Messages.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Messages.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/NavBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/NavBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/NotFoundPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Users.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend.nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/backend.nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/db.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend.nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend.nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +49,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ApiBlade" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ehr-frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597095523701</updated>
       <workItem from="1597095525044" duration="55555000" />
-      <workItem from="1597666656036" duration="14634000" />
+      <workItem from="1597666656036" duration="30717000" />
     </task>
     <servers />
   </component>
