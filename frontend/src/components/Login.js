@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, {useState} from "react";
+import {Button, Form} from "react-bootstrap";
 import "./Login.css";
+import {API_URL} from "../App";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [user, setUser] = useState({});
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -12,24 +15,34 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        console.log(event.target);
 
-        fetch("login")
+        const requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            headers: {'Content-Type': 'application/json'}//,
+            /*body: JSON.stringify({
+                username: email,
+                password: password
+            })*/
+        };
+        console.log(requestOptions);
+        console.log('email', email);
+        console.log('password', password);
+
+        fetch(API_URL + `/login?username=${email}&password=${password}`, requestOptions)
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.items
-                    });
+                    setUser(result);
+                    setIsLoaded(result.isLoggedIn);
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
                 // exceptions from actual bugs in components.
                 (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
+                    setIsLoaded(false);
+                    // error
                 }
             )
     }
@@ -37,7 +50,7 @@ export default function Login() {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <Form.Group controlId="email" bsSize="large">
+                <Form.Group controlId="email">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                         autoFocus
@@ -46,7 +59,7 @@ export default function Login() {
                         onChange={e => setEmail(e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group controlId="password" bsSize="large">
+                <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         value={password}
@@ -54,7 +67,7 @@ export default function Login() {
                         type="password"
                     />
                 </Form.Group>
-                <Button block bsSize="large" disabled={!validateForm()} type="submit">
+                <Button block disabled={!validateForm()} type="submit">
                     Login
                 </Button>
             </form>

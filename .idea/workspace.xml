@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc9de957-f604-4401-86d4-3a1a5c0b6ea2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AddMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AddUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Logout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,7 +64,7 @@
       <workItem from="1597095525044" duration="55555000" />
       <workItem from="1597666656036" duration="34483000" />
       <workItem from="1597935819288" duration="3785000" />
-      <workItem from="1597939853418" duration="1206000" />
+      <workItem from="1597939853418" duration="4984000" />
     </task>
     <servers />
   </component>

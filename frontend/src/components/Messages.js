@@ -19,7 +19,7 @@ class Messages extends React.Component {
                     console.log(result);
                     this.setState({
                         isLoaded: true,
-                        messages: result.messages
+                        messages: result
                     });
                 },
                 // Note: it's important to handle errors here
@@ -35,14 +35,27 @@ class Messages extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, messages } = this.state;
+        const {error, isLoaded, messages} = this.state;
+
+        console.log('error',error);
+        console.log('is loaded',isLoaded);
+        console.log('messages',messages);
+
+        if (!isLoaded)
+            return (
+                <div>
+                    <h1>Messages</h1>
+                    <p>None.</p>
+                </div>
+            );
+
         return (
             <div>
                 <h1>Messages</h1>
                 <ul>
-                    {messages.map( message => (
+                    {messages.map(message => (
                         <li key={message.id}>
-                        {message.title} {message.message}
+                           Title: {message.title} Message: {message.message}
                         </li>
                     ))}
                 </ul>

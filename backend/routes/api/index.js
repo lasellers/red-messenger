@@ -14,11 +14,19 @@ router.get('/', function (req, res) {
 });
 
 router.post('/login', async function (req, res, next) {
+    console.log("/login req.query:",  req.query);
+    console.log("/login req.params:",  req.params);
+    console.log("/login typeof req.query.username:", typeof req.query.username);
+    if(typeof req.query.username == 'undefined') {
+        res.json({'isLoggedIn': false});
+    }
+
     const username = req.query.username;
+    console.log("/login username:", username);
     User.findOne({
         where: {email: username}
     }).then(async (user) => {
-        //console.log("login User:", JSON.stringify(user, null, 2));
+        console.log("/login User:", JSON.stringify(user, null, 2));
         if (user !== null) {
             const isLoggedIn = await bcrypt.compare(req.query.password, user.password);
             if (isLoggedIn) {

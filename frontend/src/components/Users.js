@@ -19,7 +19,7 @@ class Users extends Component {
                     console.log(result);
                     this.setState({
                         isLoaded: true,
-                        users: result.users
+                        users: result
                     });
                 },
                 // Note: it's important to handle errors here
@@ -36,6 +36,15 @@ class Users extends Component {
 
     render() {
         const {error, isLoaded, users} = this.state;
+
+        if (!isLoaded)
+            return (
+                <div>
+                    <h1>Users</h1>
+                    <p>None.</p>
+                </div>
+            );
+
         return (
             <div>
                 <h1>Users</h1>
