@@ -37,6 +37,7 @@ export default function Logout() {
                     store.dispatch(removeUser());
                 },
                 (error) => {
+                    console.error(error);
                 }
             )
     }

@@ -27,10 +27,6 @@ export default function Login() {
             method: 'POST',
             redirect: 'follow',
             headers: {'Content-Type': 'application/json'}//,
-            /*body: JSON.stringify({
-                username: email,
-                password: password
-            })*/
         };
 
         fetch(API_URL + `/login?username=${email}&password=${password}`, requestOptions)
@@ -40,6 +36,7 @@ export default function Login() {
                     store.dispatch(addUser(result));
                 },
                 (error) => {
+                    console.error(error);
                 }
             )
     }

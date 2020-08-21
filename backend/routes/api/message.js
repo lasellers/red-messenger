@@ -2,14 +2,13 @@ let express = require('express');
 let router = express.Router();
 
 const Message = require('../../models/message.js');
-console.log(Message);
 //Message.init();
 
 router.get('/:id', function (req, res) {
     Message.findOne({
         where: {id: req.params.id}
     }).then((message) => {
-        console.log("Message:", JSON.stringify(message, null, 2));
+        //console.log("Message:", JSON.stringify(message, null, 2));
         res.json(message);
     }).catch(err => console.error(err));
 });
@@ -18,7 +17,7 @@ router.delete('/:id', async function (req, res, next) {
     Message.destroy({
         where: {id: req.params.id}
     }).then((message) => {
-        console.log("delete Message:", JSON.stringify(message, null, 2));
+        // console.log("delete Message:", JSON.stringify(message, null, 2));
         res.json({'deleted': message});
     }).catch(err => console.error(err));
 });
@@ -34,13 +33,12 @@ router.post('/', async function (req, res, next) {
             updatedAt: (new Date().toDateString())
         }
     ).then((message) => {
-        console.log("insert Message:", JSON.stringify(message, null, 2));
+        // console.log("insert Message:", JSON.stringify(message, null, 2));
         res.json(message);
     }).catch(err => console.error(err));
 });
 
 router.patch('/:id', async function (req, res, next) {
-    console.log('update', req.params);
     Message.update(
         {
             title: req.query.title,
@@ -49,11 +47,7 @@ router.patch('/:id', async function (req, res, next) {
         },
         {where: {id: req.params.id}}
     ).then((message) => {
-        console.log('update Message:', message);
-
         if (message === null || message.includes(0)) {
-            console.log('update Message create:', message);
-
             Message.create(
                 {
                     id: req.params.id,
@@ -63,12 +57,12 @@ router.patch('/:id', async function (req, res, next) {
                     updatedAt: (new Date().toDateString())
                 }
             ).then((message) => {
-                console.log("insert Message:", JSON.stringify(message, null, 2));
+                //console.log("insert Message:", JSON.stringify(message, null, 2));
                 res.json(message);
             }).catch(err => console.error(err));
 
         } else {
-            console.log("upsert Message:", JSON.stringify(message, null, 2));
+            //console.log("upsert Message:", JSON.stringify(message, null, 2));
             res.json({updated: message});
         }
     }).catch(err => console.error(err));

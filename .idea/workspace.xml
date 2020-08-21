@@ -6,9 +6,7 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Register.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +65,7 @@
       <workItem from="1597095525044" duration="55555000" />
       <workItem from="1597666656036" duration="34483000" />
       <workItem from="1597935819288" duration="3785000" />
-      <workItem from="1597939853418" duration="23564000" />
+      <workItem from="1597939853418" duration="25848000" />
     </task>
     <servers />
   </component>
