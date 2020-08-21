@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,32 +19,53 @@ import Logout from "./components/Logout";
 import Register from "./components/Register";
 import AboutUs from "./components/About";
 import NotFoundPage from "./components/NotFoundPage";
+import store from "./redux/store";
 
 export const API_URL = "http://localhost:3001/api";
 
-function App() {
+function App(props) {
+    const [user, setUser] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    store.subscribe(function () {
+        const user = store.getState().user;
+        setUser(user.user);
+        setIsLoggedIn(user.isLoggedIn);
+    });
+
+    let nav;
+    if (isLoggedIn) {
+        nav = <>
+            <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to="/users">Users</Nav.Link>
+                <Nav.Link as={Link} to="/messages">Messages</Nav.Link>
+                <Nav.Link as={Link} to="/about">About Us</Nav.Link>
+            </Nav>
+
+            <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+            </Nav>
+        </>;
+    } else {
+        nav = <>
+            <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            </Nav>
+        </>;
+    }
+
     return (
         <BrowserRouter>
             <header id="App-header">
-                <h1>Red Messenger</h1>
+                <h1>Red Messenger {user.name}</h1>
             </header>
 
             <Navbar bg="light" expand="lg">
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/users">Users</Nav.Link>
-                        <Nav.Link as={Link} to="/messages">Messages</Nav.Link>
-                        <Nav.Link as={Link} to="/about">About Us</Nav.Link>
-                    </Nav>
-
-                    <Nav className="ml-auto">
-                        <Nav.Link as={Link} to="/register">Register</Nav.Link>
-                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                        <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
-                    </Nav>
-
+                    {nav}
                 </Navbar.Collapse>
             </Navbar>
 

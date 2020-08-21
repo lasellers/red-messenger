@@ -2,7 +2,6 @@
 var router = require('express').Router();
 
 const User = require('../../models/user.js');
-console.log(User);
 //Message.init();
 
 const bcrypt = require('bcrypt');

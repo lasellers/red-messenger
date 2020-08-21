@@ -3,16 +3,21 @@ import { Button, Form } from "react-bootstrap";
 import "./Logout.css";
 import {API_URL} from "../App";
 import {Redirect} from "react-router";
+import store from "../redux/store";
+import {removeUser} from "../redux/actions";
 
 export default function Logout() {
-
     const [email, setEmail] = useState("");
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [user, setUser] = useState({});
-    const [isLoggedIn, setIsLoggedin] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    store.subscribe(function () {
+        const user = store.getState().user;
+        setEmail(user.email);
+        setIsLoggedIn(user.isLoggedIn);
+    });
 
     function validateForm() {
-        return email.length > 0;
+        return true;
     }
 
     function handleSubmit(event) {
@@ -22,29 +27,22 @@ export default function Logout() {
             method: 'GET',
             redirect: 'follow',
             headers: {'Content-Type': 'application/json'}//,
-            /*body: JSON.stringify({
-                username: email,
-                password: password
-            })*/
         };
 
-        fetch(API_URL + `/login?username=${email}`, requestOptions)
+        fetch(API_URL + `/logout?username=${email}`, requestOptions)
             .then(res => res.json())
             .then(
                 (result) => {
-                    setUser(result);
-                    setIsLoaded(true);
-                    setIsLoggedin(result.isLoggedIn);
+                    console.log('logout',result);
+                    store.dispatch(removeUser());
                 },
                 (error) => {
-                    setIsLoaded(false);
-                    // error
                 }
             )
     }
 
-    if(isLoggedIn) {
-        return <Redirect to='/users' />;
+    if(!isLoggedIn) {
+        return <Redirect to='/' />;
     }
 
     return (

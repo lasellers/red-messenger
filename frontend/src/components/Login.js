@@ -1,18 +1,20 @@
 import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
-import { Redirect } from "react-router-dom";
-//import { connect } from 'react-redux'
-//import { addUser } from '../../redux/actions'
-
+import {Redirect} from "react-router-dom";
+import store from "../redux/store";
+import {addUser} from "../redux/actions";
 import "./Login.css";
 import {API_URL} from "../App";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [user, setUser] = useState({});
-    const [isLoggedIn, setIsLoggedin] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    store.subscribe(function () {
+        const user = store.getState().user;
+        setIsLoggedIn(user.isLoggedIn);
+    });
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -35,19 +37,15 @@ export default function Login() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setUser(result);
-                    setIsLoaded(true);
-                    setIsLoggedin(result.isLoggedIn);
+                    store.dispatch(addUser(result));
                 },
                 (error) => {
-                    setIsLoaded(false);
-                    // error
                 }
             )
     }
 
-    if(isLoggedIn) {
-        return <Redirect to='/users' />;
+    if (isLoggedIn) {
+        return <Redirect to='/users'/>;
     }
 
     return (
