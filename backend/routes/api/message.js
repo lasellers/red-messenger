@@ -24,12 +24,12 @@ router.delete('/:id', async function (req, res, next) {
 });
 
 router.post('/', async function (req, res, next) {
-    console.log('create params', req.params);
-    console.log('create query', req.query);
     Message.create(
         {
             title: req.query.title,
             message: req.query.message,
+            userId: req.query.userId,
+            repliedTo: req.query.repliedTo,
             createdAt: (new Date().toDateString()),
             updatedAt: (new Date().toDateString())
         }

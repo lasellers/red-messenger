@@ -1,6 +1,8 @@
 let express = require('express');
 let router = express.Router();
 
+const bcrypt = require('bcrypt');
+
 const User = require('../../models/user.js');
 console.log(User);
 //Message.init();
@@ -37,11 +39,16 @@ router.delete('/:id', async function (req, res, next) {
 });
 
 router.post('/', async function (req, res, next) {
-    console.log('create params', req.params);
-    console.log('create query', req.query);
-    User.create(
+    User.find({
+        where: {email: req.params.email}
+    }).then((user) => {
+
+    });
+        User.create(
         {
             name: req.query.name,
+            email: req.query.email,
+            password: await bcrypt.hash(req.query.password, 10),
             createdAt: (new Date().toDateString()),
             updatedAt: (new Date().toDateString())
         }
@@ -53,10 +60,10 @@ router.post('/', async function (req, res, next) {
 });
 
 router.patch('/:id', async function (req, res, next) {
-    console.log('update', req.params);
     User.update(
         {
             name: req.query.name,
+            email: req.query.email,
             updatedAt: (new Date().toDateString())
         },
         {where: {id: req.params.id}}

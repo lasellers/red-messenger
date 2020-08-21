@@ -17,7 +17,7 @@ router.get('/', async function (req, res) {
         });
     });*/
 
-    User.findAll().then((users) => {
+    User.findAll({order: [['updatedAt', 'DESC']]}).then((users) => {
         console.log(users.every(users => users instanceof User)); // true
         console.log("All users:", JSON.stringify(users, null, 2));
         res.json(users);

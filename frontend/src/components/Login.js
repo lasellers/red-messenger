@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+//import { connect } from 'react-redux'
+//import { addUser } from '../../redux/actions'
+
 import "./Login.css";
 import {API_URL} from "../App";
 
@@ -8,6 +12,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [user, setUser] = useState({});
+    const [isLoggedIn, setIsLoggedin] = useState(false);
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -15,7 +20,6 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target);
 
         const requestOptions = {
             method: 'POST',
@@ -26,25 +30,24 @@ export default function Login() {
                 password: password
             })*/
         };
-        console.log(requestOptions);
-        console.log('email', email);
-        console.log('password', password);
 
         fetch(API_URL + `/login?username=${email}&password=${password}`, requestOptions)
             .then(res => res.json())
             .then(
                 (result) => {
                     setUser(result);
-                    setIsLoaded(result.isLoggedIn);
+                    setIsLoaded(true);
+                    setIsLoggedin(result.isLoggedIn);
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     setIsLoaded(false);
                     // error
                 }
             )
+    }
+
+    if(isLoggedIn) {
+        return <Redirect to='/users' />;
     }
 
     return (

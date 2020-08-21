@@ -46,16 +46,27 @@ class Users extends Component {
             );
 
         return (
-            <div>
+            <>
                 <h1>Users</h1>
-                <ul>
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {users.map(user => (
-                        <li key={user.id}>
-                            {user.name} {user.email}
-                        </li>
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                        </tr>
                     ))}
-                </ul>
-            </div>
+                    </tbody>
+                </table>
+            </>
         );
     }
 }

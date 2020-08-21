@@ -16,7 +16,7 @@ router.get('/', async function (req, res) {
         });
     });*/
 
-    Message.findAll().then((messages) => {
+    Message.findAll({order: [['updatedAt', 'DESC']]}).then((messages) => {
         console.log(messages.every(messages => messages instanceof Message)); // true
         console.log("All messages:", JSON.stringify(messages, null, 2));
         res.json(messages);

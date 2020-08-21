@@ -22,9 +22,6 @@ class Messages extends React.Component {
                         messages: result
                     });
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -37,10 +34,6 @@ class Messages extends React.Component {
     render() {
         const {error, isLoaded, messages} = this.state;
 
-        console.log('error',error);
-        console.log('is loaded',isLoaded);
-        console.log('messages',messages);
-
         if (!isLoaded)
             return (
                 <div>
@@ -50,16 +43,32 @@ class Messages extends React.Component {
             );
 
         return (
-            <div>
+            <>
                 <h1>Messages</h1>
-                <ul>
+
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Title</th>
+                        <th>Message</th>
+                        <th>UserId</th>
+                        <th>RepliedTo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {messages.map(message => (
-                        <li key={message.id}>
-                           Title: {message.title} Message: {message.message}
-                        </li>
+                        <tr key={message.id}>
+                            <td>{message.id}</td>
+                            <td>{message.title}</td>
+                            <td>{message.message}</td>
+                            <td>{message.userId}</td>
+                            <td>{message.repliedTo}</td>
+                        </tr>
                     ))}
-                </ul>
-            </div>
+                    </tbody>
+                </table>
+            </>
         );
     }
 }

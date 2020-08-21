@@ -25,8 +25,8 @@ export const API_URL = "http://localhost:3001/api";
 function App() {
     return (
         <BrowserRouter>
-            <header className="App-header">
-                Red Messenger
+            <header id="App-header">
+                <h1>Red Messenger</h1>
             </header>
 
             <Navbar bg="light" expand="lg">
